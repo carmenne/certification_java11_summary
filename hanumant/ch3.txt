@@ -7,4 +7,88 @@ Obj Declare and initialize variable (including casting and promoting
 	"definite ssignment" -> variables should be initialized before
 	they are used
 	 
-	Compiler perfroms flow analysis.
+	Compiler perfroms flow analysis (dee demo/ch3/FlowAnalysis.java)
+	
+	Assignment using literals:
+	- numeric literals:
+		- int literal (1234)
+		- double literal (1234.0)
+		- long literal (1234L)
+		- float literal (1234.0f)
+	- boolean literals: true and false
+	- null
+	- String literals: "hello"
+	- char:
+		- 'a' or 'A'
+		- Unicode vharacter format (\uxxxx, 
+		where xxxx - is the hexadecimal value)
+	
+	Numeric values can be represented in:
+	- hexadecimal format (must start with 0x or 0X) e.g. 0xF -> 15
+	- octal (must start with 0) e.g. 017 -> 15
+	- binary (must start with 0b or 0B) e.g. 0b1111 -> 15
+
+    ####################################### 
+	jshell> System.out.print(0b1111);
+	15
+	jshell> System.out.print(0xF);
+	15
+	jshell> System.out.print(017);
+	15
+	####################################### 
+	
+	Assignments:
+	- same types:
+		- literal assignment (disscussed above)
+		- from a different variable (int i = j;)
+		- return value of a method (int i = calculate();)
+	- different types:
+		- implicit widening (if the target types is larger than the source type)
+		  int i;
+		  long j;
+		  j = i; -> j is larger than i, so implicit widening takes place
+		- implicit narrowing.
+		   If the target type is smaller than the source type, the compiler
+		   does not allow it unless:
+			- the source type is a compile time constants and it fits into
+			the target type
+		- explicit narrwoing via casting
+			You can use a cast to assign any primitive integral or floating
+			point type value into any integral or floating point type.
+			You cannot cast a boolean value to any other type or vice-versa.
+			* integral types: byte, char, short, int, long
+			* floating point ype; float, double
+			When using explicit casting, complier will allow it.
+			However you can have overflow at runtime
+			Ex:
+				int i = 128;
+				byte b = (byte)i; // allowed by compiler, because of the cast
+				b will have value -128 (tow's complement for 10000000)
+			
+		Exceptions:
+		- short and byte need explicit narrwoing (cast) to be assigned to char
+		This is because char is unsigned, while short and byte are signed
+		- float to int and double to long need explicit narrwoing (cast)
+		- int to float and long to double are allowed (implicit widening) although it loses precision
+		
+		
+		 
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+	
