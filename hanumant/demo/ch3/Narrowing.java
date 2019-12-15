@@ -34,5 +34,29 @@ public class Narrowing {
 		System.out.println("byte b4 = (byte)l;");
 		System.out.println("The compiler is convinced via casting. At runtime " +
 			"b4 will overflow. The value depends on the two's complement b4="+b4);
+			
+		int m = Integer.MIN_VALUE;
+		float f1 = m;
+		System.out.println("");
+		System.out.println("int m = Integer.MAX_VALUE;");
+		System.out.println("float f1 = m;");
+		System.out.println("Implicit narrowing is ok. It is allowed, " +
+		"but it may loose precision.");
+		System.out.println("m=" + m);
+		System.out.println("f1=" + f1);
+		boolean equal = m == f1;
+		System.out.println("m == f1=" + equal);
+		
+		int n = 1234567890;
+		float f2 = n;
+		
+		System.out.println(n);
+		System.out.println(f2);
+		System.out.println("Should print n  - (int)f2 = 0");
+		int result = n  - (int)f2;
+		float result2 = n - f2;
+		System.out.println("n  - (int)f2 = " + result);
+		System.out.println("n  - f2 = " + result2);
+		
 	}
 }
