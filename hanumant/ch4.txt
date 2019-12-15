@@ -1,0 +1,49 @@
+Obj Define the structure of a Java class
+	A java source file has the following 3 parts:
+		- zero or one package statement;
+		- zero or more import statements;
+		- one or more reference type (class, interface, enum) definitions
+	Memebers of a class can be:
+		- variable declaration (and initialization on the same line);
+		- initializer block;
+		- constructor;
+		- method.
+	The code for a top level public type should be in a source file with
+	the same name
+
+Obj Identify the scope of variable
+	There are three  visibility scopes for variables:
+		- class;
+		- method;
+		- block;
+	There are five life span scopes for variables:
+		- class;
+		- instance;
+		- method;
+		- for-loop;
+		- block;
+	
+	When a block ends, variables defined inside the block cease to exist.
+	When a method ends, variables defined inside the method cease to exist.
+	When an object ceases to exist, the instance variable of that object 
+	ceases to exist
+	When a class is unloaded by JVM. the static variable of that class ceases to exist
+	The compiler uses the visibility scoped when checking.
+	
+	e.g. Access a variable declared inside block, outside the block
+	{
+		int x = 2;
+	}
+	System.out.println(x); // Does not compile because x is not accesible anymore
+	
+	Rule: You can only access a variable directly (witouh a reference)
+	within the visibility scope
+	
+	Rule: You cannot define two variables with the same name in the same
+	visibility scope
+	Exception: It is not possible to overlap a method scoped vaiable
+	with a for-loop or block scoped variable
+	See ch4/demo/Scopes.java
+	
+
+	
