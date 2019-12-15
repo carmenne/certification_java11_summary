@@ -1,0 +1,51 @@
+# What exceptions can the constructor of a subclass declare if the constructor of the superclass 
+throws an excpetion (more specific, more generic, same etc)
+
+# Java Compilation and execution
+	# javac -d . Account.java
+		-d -> creates the directory structure as expected by JVM based on the package declaration
+		If Account is in package accounting, the folder strucure will be
+		/home
+			/Account.java
+			/accounting/Account.class
+	java accounting/Account
+	
+	# javac -d ./target Account.java
+		/home
+			/Account.java
+			/target/accounting/Account.class
+	java -classpath ./target accounting/Account
+	
+	# If Account is in package com.carmen.account
+	javac -d ./target Account.java
+		/home
+			/Account.java
+			/target/com/carmen/accounting/Account.class
+	java -classpath ./target com/carmen/accoutning/Account.class
+	
+	# javac -d . A.java,B.java [javac -d . *.java]
+	The compiler will detect dependencies between the classes and compiled them in the correct order
+	
+# Package classes into jar
+	Assuming the structure
+		/home
+			/Account.java
+			/accounting/Account.class
+	Create the jar:
+	jar -cvf accounting.jar accounting
+	Run the class:
+	java -classpath accounting.jar accounting/Account
+	
+	The jar contains the classes in the appropriate directory structure (based on packages names)
+	and the manifest at the location META-INF/MANIFEST.MF
+	
+	The manifest contains the name of the class that represents the entry point in the application
+	Main-Class: accounting.Account
+	
+	You can add your own manifest to the jar:
+	jar -cvfm accounting.jar manifest.txt 
+	
+	
+	
+
+

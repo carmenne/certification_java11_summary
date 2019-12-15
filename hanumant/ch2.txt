@@ -1,0 +1,52 @@
+Obj1 Create an executable Java program with a main method
+	 Java class is not the executable. JVM is an executable, You execute JVM.
+	 Yo actually pass FQCN as an argument to JVM
+	 It loads the class and look for a specific method:
+	 public static void main(String[] args) {}
+	 Another valid main method could is:
+	 public static nativ void main(String[] args) {}
+	 The JVM will look for the implementation of the main method in a
+	 dynamically linked library.
+	 
+	 Main method can be overloaded. JVM will only look for the entry point
+	 at one specific main.
+	 
+Obj2 Command line arguments
+	It is possible to provide any number of arguments
+	java TestClass a b c
+	JVM passes then through String[] args as Strings.
+
+Obj3 Create and import packages
+	# package statement
+	If you declare classes ina file without the package statement,
+	they will be parte of the unnamed package. As this packes does not
+	have a name, you cannot import classes from it
+	You cannot do import *; in you java file
+	Convention
+	com.companyName.groupName.applicationName
+	You can only have a package statmenet in the source file
+	and that should be the first statement (excluding comments)
+
+	# import statement
+	FQCN=package name + class name
+	import FQCN;
+
+	# static imports
+	from Java 7
+	you can import statci fields or static methods of a class
+	
+	Duplicates and redundant import statements are allowed
+	java.lang package is imported automatically in all classes
+	
+	NOT:
+	- there is no way to import a subpackage;
+	For example import com.carmen.* will import all classes from the 
+	package com.carmen. It will not import any class under
+	com.carmen.learn package
+	Furthermore import com.carmen.*.* is illegal
+	- you canot import a package or a class that does not exist (the
+	compilers scans the classpath and infers its existence)
+	- unpackaged classes (classes in the default or unnamed package)
+	cannot be imported. You cannot do import.*
+	
+	

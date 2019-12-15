@@ -1,0 +1,10 @@
+Obj Declare and initialize variable (including casting and promoting
+	primitive data types)
+	
+	Instance and static vaiables have a default value (0 (0.0) for numeric types,
+	false for boolean and null for objects)
+	Local variables must be initialized according to the principle of 
+	"definite ssignment" -> variables should be initialized before
+	they are used
+	 
+	Compiler perfroms flow analysis.
