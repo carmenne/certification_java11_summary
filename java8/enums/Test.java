@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 enum Micutenii {
 	
 	MICUTA("Carmen", 32) { // constant specific class body
@@ -30,11 +32,21 @@ enum Micutenii {
 
 public class Test {
 	
+	static enum Ceiuțuri {
+		CULCATOARE, ROIBOS;
+	}
+	
+	enum Deserturi {
+		BOMBOANE, CIOCOLATA;
+	}
+	
 	public static void main(String[] args) {
 		
 		System.out.println(Micutenii.MICUTA + " " + Micutenii.MICUTUL);
 		Micutenii.MICUTA.name = "tot Carmen";
 		System.out.println(Micutenii.MICUTA + " " + Micutenii.MICUTUL);
 		//~ System.out.println(new Micutenii("a treia micutenie?", 0)); // error: enum types may not be instantiated
+		System.out.println(Arrays.toString(Ceiuțuri.values()));
+		System.out.println(Arrays.toString(Deserturi.values()));
 	}
 }
