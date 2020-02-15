@@ -43,6 +43,10 @@ public class Test {
 			System.out.println(function.pretty(apple));
 		}
 	}
+	
+	public static <T> filter(List<T> list, Predicate<T> p) {
+		return list.get(0);
+	}
 }
 
 class Apple {
