@@ -20,7 +20,7 @@ public class Test {
 			@Override
 			public String pretty(Apple apple) {
 				
-				return apple.id + " --- " + AppleFunction.addColor(apple) 
+				return  apple.id + " --- An apple of color: " + AppleFunction.addColor(apple) 
 						+ apple.color + AppleFunction.resetColor();
 			}
 		};
@@ -28,7 +28,7 @@ public class Test {
 		AppleFunction byWeight = new AppleFunction() {
 			@Override
 			public String pretty(Apple apple) {
-				return apple.id + " --- " + AppleFunction.addColor(apple) + 
+				return apple.id + " --- An apple of weight: " + AppleFunction.addColor(apple) + 
 						apple.weight + AppleFunction.resetColor();
 			}
 		};	
