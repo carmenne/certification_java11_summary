@@ -53,8 +53,16 @@ There are more overloaded methods:
 ```diff
 - * reduce(0, accumulator, combiner) -> for parallel streams
 ```
-#### 
+	
+#### Reduce in parallel
+To sum all the elements in the stream, theres is little modification to the sequential version:
+```java
+int sum = numbers.parallelStream().reduce(0, Integer::sum);
+```
+But there is a price to pay to execute this code in parallel: the lambda passed to reduce can't change state (for example
+instance variables), and the operation needs to be associative to it can be executed in any order.
 
+#### Stream operations: stateless vs. stateful
 
 
 
