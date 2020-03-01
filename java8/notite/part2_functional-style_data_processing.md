@@ -23,5 +23,31 @@ Stream is a sequence of elements from a source that supports data processing ope
 	
 Streams API operations
 -----------------------	
+|Operation|Type|Return Type|Type/functional interface used|Function descriptor|
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+|filter|intermediate|Stream<T>|Predicate<T>|T->boolean|
+|distinct|intermediate<br>(stateful-unbounded)|Stream<T>|||
+|skip|intermediate<br>(stateful-bounded)|Stream<T>|long||
+|limit|intermediate<br>(stateful-bounded)|Stream<T>|long||
+|peek|intermidiate|Stream<T>|<Consumer<T>|T->void|
+|map|intermediate|Stream<R>|<Function<T,R>|T->R|
+|flatMap|intermediate|Stream<R>|Function<T,Stream<R>>|T->Stream<R>|
+|sorted|intermediate<br>(stateful-unbounded)|Stream<T>|Comparator<T>|(T,T)->int|
+|anyMatch|Terminal|boolean|Predicate<T>|T->boolean|
+|noneMatch|Terminal|boolean|Predicate<T>|T->boolean|
+|anyMatch|Terminal|boolean|Predicate<T>|T->boolean|
+|allMatch|Terminal|boolean|Predicate<T>|T->boolean|
+|findAny|Terminal|Optional<T>|||
+|findFirst|Terminal|Optional<T>|||
+|forEach|Terminal|void|Consumer<T>|T->void|
+|collect|Terminal|R|Collector<T,A,R>||
+|reduce|Terminal(stateful-bounded)|Optional<T>|BinaryOperator<T>|(T,T)->T|
+|count|Terminal|long|||
+
+
+
+
+
+
 
 	
