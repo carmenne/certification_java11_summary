@@ -73,12 +73,24 @@ Useful methods to compose lamda expressions
 `inventory.sort(comparing(Apple::getWeight).reversed());`
 #### Chaining comparators
 ```java
-   inventory.sort(comparing(Apple::getWeight)
+inventory.sort(comparing(Apple::getWeight)
             .reversed());
             .thenBy(Apple::getCountry));
 ```
-
-
+#### Composing Predicates
+It used three methods: negate, and, or.
+```java
+Predicate<Apple> redApple = a -> "red".equals(a.getColor());
+Predicate<Apple> notRedApple = redApple.negate();
+Predicate<Apple> redAndHeavyApple = redApple.and(a -> a.getWeight()>150);
+Predicate<Apple> redAndHeavyAppleOrGreen = redApple.and(a -> a.getWeight()>150)
+                                                   .or(a -> "green".equals(a.getColor());
+```
+Precendence of methods: and, or is managed from left to right.
+So a.or(b).and(c) can be seen as (a||b)&&c
+#### Composing Functions
+Methods: andThen, compose.
+                                                
 
 
 
