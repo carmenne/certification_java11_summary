@@ -59,6 +59,8 @@ Method reference
 
 Constructor reference
 -----------------------
+|number of arguments|example|
+| ------------- | ------------- |
 |constructor with no argument| Supplier<Apple> apple = Apple:new; apple.get();|
 |constructor with one argument| Function<Integer, Apple> apple = Apple::new; apple.apply(100) // 100g|
 |constructor with teow arguments|BiFunction<Integer, String, Apple> apple = Apple::new; apple.apply("Jonatan", 100);|
