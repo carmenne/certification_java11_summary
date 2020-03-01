@@ -44,6 +44,16 @@ Streams API operations
 |reduce|Terminal(stateful-bounded)|Optional<T>|BinaryOperator<T>|(T,T)->T|
 |count|Terminal|long|||
 
+#### findFirst vs. findAny
+findFirst is constraining when used in parallel streams
+#### Reducing
+There are more overloaded methods:
+ * reduce(0, Integer::sum) returns an int
+ * reduce(Integer::sum) returns an Optional<Integer> (optional is needed because the stream can be empty)
+```diff
+- * reduce(0, accumulator, combiner) -> for parallel streams
+```
+#### 
 
 
 
