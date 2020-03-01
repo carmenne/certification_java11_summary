@@ -29,5 +29,5 @@ ToIntFunction<T>m IntoToDoubleFunction etc
 | ------------- | ------------- | ------------- |
 |Predicate<T>|T->boolean|IntPredicate, LongPredicate, DoublePredicate|
 |Consumer<T>|T->void|IntConsumer,LongConsumer,DoubleConsumer|
-|Function<T,R>|T->R|IntFunction<R>,IntToDoubleFunction,IntToLongFunction,LongFunction<R>,LongToIntFunction,LongToDoubleFunction,DoubleFunction<R>,ToIntFunction<R>,ToDoubleFunction<R>, ToLongFunction<R>|
+|Function<T,R>|T->R|IntFunction<R>,IntToDoubleFunction,IntToLongFunction,LongFunction<R>,<br>LongToIntFunction,LongToDoubleFunction,DoubleFunction<R>,<br>ToIntFunction<R>,ToDoubleFunction<R>, ToLongFunction<R>|
 
