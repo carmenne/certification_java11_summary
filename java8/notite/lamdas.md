@@ -52,6 +52,7 @@ Method reference
 - a method reference to an instance method of an existing object
 
 |lamda|method reference|
+| ------------- | ------------- |
 |(args)->ClassName.staticMethod(args)|ClassName::staticMethod|
 |(args0,rest)->arg0.instanceMethod(rest)|ClassName::instanceMethod<br>arg0 is of type ClassName|
 |(args)->expr.instanceMethod(args)|expr::instanceMethod|
