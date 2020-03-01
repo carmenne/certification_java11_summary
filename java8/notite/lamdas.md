@@ -30,4 +30,9 @@ ToIntFunction<T>m IntoToDoubleFunction etc
 |Predicate<T>|T->boolean|IntPredicate, LongPredicate, DoublePredicate|
 |Consumer<T>|T->void|IntConsumer,LongConsumer,DoubleConsumer|
 |Function<T,R>|T->R|IntFunction<R>,IntToDoubleFunction,IntToLongFunction,LongFunction<R>,<br>LongToIntFunction,LongToDoubleFunction,DoubleFunction<R>,<br>ToIntFunction<R>,ToDoubleFunction<R>, ToLongFunction<R>|
-
+|Supplier<T>|()->T|BooleanSupplier,IntSupplier,LongSupplier,DoubleSupplier|
+|UnaryOperator<T>|T->T|IntUnaryOperator,LongUnaryOperator,DoubleBinaryOperator|
+|BinaryOperator|(T,T)->T|IntBinaryOperator,LongBinaryOperator,DoubleBinaryOperator|
+|BiPredicate<T,U>|(T,U)->boolean|
+|BiConsumer<T,U>|(T,U)->void|ObjIntConsumer<T>,ObjLongConsumer<T>,ObjDoubleConsumer<T>|
+|BiFunction<T,U,R>|(T,U)->R|ToIntBiFunction<T,U>,ToDoubleBiFunction<T,U>,ToLongBiFunction<T,U>|
