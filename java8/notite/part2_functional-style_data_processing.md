@@ -1,9 +1,9 @@
 Streams API
 -----------------------
 Streams API lets you write code that is:
-	* declarative (more concise and readable)
-	* composable (greater flexibility)
-	* parallelizable (better performance)
+	*declarative (more concise and readable)
+	*composable (greater flexibility)
+	*parallelizable (better performance)
 Definition: a sequence of elements from a source that supports data processing operations
 	* sequence of elements: collections are about data, streams are about computations
 	* source: streams consume from a data-providing source such as collections,
