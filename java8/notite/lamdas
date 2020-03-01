@@ -1,0 +1,28 @@
+Functional Interface (43)
+-----------------------
+A interface that has exactky one abstract method. 
+Methods with the same signature as the ones from objects are excluded.
+
+Function Descriptor (45)
+-----------------------
+The signature of the abstract method of a functional interface
+
+Execute around pattern (47)
+-----------------------
+A recurrent pattern in resource processing: 
+- (1) open the resource;
+- (2) do some processing on it;
+- (3) close the resource.
+Lambda expressions can be used to pass behaviour as parameter (for (2))
+
+Primitive specializations (52)
+-----------------------
+Functional interfaces have primitive specializations to avoid the 
+expensive boxing operations.
+In general, the name of the functional interfaces that have primitive
+specializations ae preceded by the appropriate primitive type, 
+for example, DoublePredicate, IntConsumer, LongBinaryOperator, IntFunction 
+The function interface has also variats for the output type parameter:
+ToIntFunction<T>m IntoToDoubleFunction etc
+
+Functional Interface     |     Function descriptor     |      Primitive specialization
