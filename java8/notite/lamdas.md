@@ -67,11 +67,11 @@ Constructor reference
   
 Useful methods to compose lamda expressions
 -----------------------
-**Composing comparators**
+#### Composing comparators
 `Comparator<Apple> c = Comparator.comparing(Apple::getWeight);`
-**Reversed order**
+#### Reversed order
 `inventory.sort(comparing(Apple::getWeight).reversed());`
-**Chaining comparators**
+#### Chaining comparators
 ```inventory.sort(comparing(Apple::getWeight)
             .reversed());
             .thenBy(Apple::getCountry));
