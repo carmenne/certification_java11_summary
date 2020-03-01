@@ -1,3 +1,12 @@
+Lambda
+-----------------------
+A lambda expression can be understood as a kind of anonymuous function: it doesn't have a name, but it has a list of parameters, a body, a return type, and also possibly a list of exceptions that can be thrown.
+Lambda expressions let you provide the implementation of the abstract method of a functional interface directly inline and treat the whole expression as an instance of a functional interface.
+
+Target type
+-----------------------
+The type expected by a lambda expression
+
 Functional Interface (43)
 -----------------------
 A interface that has exactky one abstract method. 
@@ -87,10 +96,18 @@ Predicate<Apple> redAndHeavyAppleOrGreen = redApple.and(a -> a.getWeight()>150)
                                                    .or(a -> "green".equals(a.getColor());
 ```
 Precendence of methods: and, or is managed from left to right.
-So a.or(b).and(c) can be seen as (a||b)&&c
+So a.or(b).and(c) can be seen as `(a||b)&&c`
 #### Composing Functions
 Methods: andThen, compose.
-                                                
+```java
+Function<Integer,Integer> f = x -> x + 1;
+Function<Integer,Integer> g = x -> x * 2;
+var h = f.andThen(g); // g(f(x))
+int result = h.apply(1); // 4
+var h = f.compose(g); // f(g(x))
+int result = h.apply(1); // 3
+```
+
 
 
 
