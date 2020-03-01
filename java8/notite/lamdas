@@ -26,6 +26,7 @@ The function interface has also variats for the output type parameter:
 ToIntFunction<T>m IntoToDoubleFunction etc
 
 |Functional Interface|Function descriptor|Primitive specialization|
+| ------------- | ------------- | ------------- |
 |Predicate<T>|T->boolean|IntPredicate, LongPredicate, DoublePredicate|
 |Consumer<T>|T->void|IntConsumer,LongConsumer,DoubleConsumer|
 |Function<T,R>|T->R|IntFunction<R>,|
