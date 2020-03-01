@@ -72,7 +72,8 @@ Useful methods to compose lamda expressions
 #### Reversed order
 `inventory.sort(comparing(Apple::getWeight).reversed());`
 #### Chaining comparators
-```inventory.sort(comparing(Apple::getWeight)
+```java
+   inventory.sort(comparing(Apple::getWeight)
             .reversed());
             .thenBy(Apple::getCountry));
 ```
