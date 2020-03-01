@@ -63,9 +63,15 @@ But there is a price to pay to execute this code in parallel: the lambda passed 
 instance variables), and the operation needs to be associative to it can be executed in any order.
 
 #### Stream operations: stateless vs. stateful
+Operations like map and filter don't have an internal state (assuming the user supplied lambda or method reference has no internam mutable state).
+Operations like reduce, sum, and max need to have internal state to accumulate the result.The internal state is of bounded size (e.g. integer, double) no matter how many elements are in the stream being processed.
+Operations like sorted, distinct require knowing the previous history. For example, sorting requires all the elements to be buffered before a single item can be added to the output stream: the storage requirement of this operation is unbounded.
 
+Numeric streams
+-----------------------	
 
-
+Building streams
+-----------------------	
 
 
 	
