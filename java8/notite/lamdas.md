@@ -61,7 +61,30 @@ Constructor reference
 -----------------------
 |number of arguments|example|
 | ------------- | ------------- |
-|constructor with no argument| Supplier<Apple> apple = Apple:new; apple.get();|
-|constructor with one argument| Function<Integer, Apple> apple = Apple::new; apple.apply(100) // 100g|
-|constructor with teow arguments|BiFunction<Integer, String, Apple> apple = Apple::new; apple.apply("Jonatan", 100);|
+|constructor with no argument| `Supplier<Apple> apple = Apple:new; apple.get();`|
+|constructor with one argument| `Function<Integer, Apple> apple = Apple::new; apple.apply(100) // 100g`|
+|constructor with teow arguments|`BiFunction<Integer, String, Apple> apple = Apple::new; apple.apply("Jonatan", 100);`|
   
+Useful methods to compose lamda expressions
+-----------------------
+**Composing comparators**
+`Comparator<Apple> c = Comparator.comparing(Apple::getWeight);`
+**Reversed order**
+`inventory.sort(comparing(Apple::getWeight).reversed());`
+**Chaining comparators**
+```inventory.sort(comparing(Apple::getWeight)
+            .reversed());
+            .thenBy(Apple::getCountry));
+```
+
+
+
+
+
+
+
+
+
+
+
+
