@@ -36,3 +36,29 @@ ToIntFunction<T>m IntoToDoubleFunction etc
 |BiPredicate<T,U>|(T,U)->boolean|
 |BiConsumer<T,U>|(T,U)->void|ObjIntConsumer<T>,ObjLongConsumer<T>,ObjDoubleConsumer<T>|
 |BiFunction<T,U,R>|(T,U)->R|ToIntBiFunction<T,U>,ToDoubleBiFunction<T,U>,ToLongBiFunction<T,U>|
+
+Restrictions on local variables
+-----------------------
+Lambdas are allowed to capture (that is, to reference in their bodies), instance variables and static
+variables without restrictions. But local variables have to be explicitly declared final or are effectively final
+
+Type inference in lamdas expressions
+-----------------------
+
+Method reference
+-----------------------
+- a method reference to a static method;
+- a method reference to an instance method of an arbitrary type
+- a method reference to an instance method of an existing object
+
+|lamda|method reference|
+|(args)->ClassName.staticMethod(args)|ClassName::staticMethod|
+|(args0,rest)->arg0.instanceMethod(rest)|ClassName::instanceMethod<br>arg0 is of type ClassName|
+|(args)->expr.instanceMethod(args)|expr::instanceMethod|
+
+Constructor reference
+-----------------------
+|constructor with no argument| Supplier<Apple> apple = Apple:new; apple.get();|
+|constructor with one argument| Function<Integer, Apple> apple = Apple::new; apple.apply(100) // 100g|
+|constructor with teow arguments|BiFunction<Integer, String, Apple> apple = Apple::new; apple.apply("Jonatan", 100);|
+  
