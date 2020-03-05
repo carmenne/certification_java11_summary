@@ -45,8 +45,11 @@ Streams API operations
 |count|Terminal|long|||
 
 #### findFirst vs. findAny
+
 findFirst is constraining when used in parallel streams
+
 #### Reducing
+
 There are more overloaded methods:
  * reduce(0, Integer::sum) returns an int
  * reduce(Integer::sum) returns an Optional<Integer> (optional is needed because the stream can be empty)
@@ -55,6 +58,7 @@ There are more overloaded methods:
 ```
 	
 #### Reduce in parallel
+
 To sum all the elements in the stream, theres is little modification to the sequential version:
 ```java
 int sum = numbers.parallelStream().reduce(0, Integer::sum);
@@ -70,52 +74,8 @@ Operations like sorted, distinct require knowing the previous history. For examp
 Numeric streams
 -----------------------	
 Primitive stream specializations are: IntStream, LongStream, DoubleStream (they are avoiding hidden boxing costs)
-#### Mapping to a numeric stream
-The most common methods are: mapToInt, mapToDouble, mapToLong.
-e.g.
-|Operation|Type|Return Type|Type/functional interface used|Function descriptor|
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-|filter|intermediate|Stream<T>|Predicate<T>|T->boolean|
-|distinct|intermediate<br>(stateful-unbounded)|Stream<T>|||
-|skip|intermediate<br>(stateful-bounded)|Stream<T>|long||
-|limit|intermediate<br>(stateful-bounded)|Stream<T>|long||
-|peek|intermidiate|Stream<T>|<Consumer<T>|T->void|
-|map|intermediate|Stream<R>|<Function<T,R>|T->R|
-|flatMap|intermediate|Stream<R>|Function<T,Stream<R>>|T->Stream<R>|
-|sorted|intermediate<br>(stateful-unbounded)|Stream<T>|Comparator<T>|(T,T)->int|
-|anyMatch|Terminal|boolean|Predicate<T>|T->boolean|
-|noneMatch|Terminal|boolean|Predicate<T>|T->boolean|
-|anyMatch|Terminal|boolean|Predicate<T>|T->boolean|
-|allMatch|Terminal|boolean|Predicate<T>|T->boolean|
-|findAny|Terminal|Optional<T>|||
-|findFirst|Terminal|Optional<T>|||
-|forEach|Terminal|void|Consumer<T>|T->void|
-|collect|Terminal|R|Collector<T,A,R>||
-|reduce|Terminal(stateful-bounded)|Optional<T>|BinaryOperator<T>|(T,T)->T|
-|count|Terminal|long|||
-#### findFirst vs. findAny
-findFirst is constraining when used in parallel streams
-#### Reducing
-There are more overloaded methods:
- * reduce(0, Integer::sum) returns an int
- * reduce(Integer::sum) returns an Optional<Integer> (optional is needed because the stream can be empty)
-```diff
-- * reduce(0, accumulator, combiner) -> for parallel streams
-```
-#### Reduce in parallel
-To sum all the elements in the stream, theres is little modification to the sequential version:
-```java
-int sum = numbers.parallelStream().reduce(0, Integer::sum);
-```
-But there is a price to pay to execute this code in parallel: the lambda passed to reduce can't change state (for example
-instance variables), and the operation needs to be associative to it can be executed in any order.
-#### Stream operations: stateless vs. stateful
-Operations like map and filter don't have an internal state (assuming the user supplied lambda or method reference has no internam mutable state).
-Operations like reduce, sum, and max need to have internal state to accumulate the result.The internal state is of bounded size (e.g. integer, double) no matter how many elements are in the stream being processed.
-Operations like sorted, distinct require knowing the previous history. For example, sorting requires all the elements to be buffered before a single item can be added to the output stream: the storage requirement of this operation is unbounded.
-Numeric streams
------------------------ 
-Primitive stream specializations are: IntStream, LongStream, DoubleStream (they are avoiding hidden boxing costs)
+
+
 #### Mapping to a numeric stream
 The most common methods are: mapToInt, mapToDouble, mapToLong.
 e.g.
@@ -124,24 +84,12 @@ int calories = menu.stream()
                 .mapToInt(Dish::getCalories()
                 .sum();
 ```
+
 #### Converting back to a stream og objects
 `Stream<Integer> stream = intStream.boxed()`
+
 #### OptionalInt
-```
-OptionalInt maxCalories = menu().stream()
-                                .mapToInt(Dish::getCalories)
-                                .max();
-int max = maxCalories.orElse(1);                                
-@carmenne
-Commit changes
-```
-int calories = menu.stream()
-		.mapToInt(Dish::getCalories()
-		.sum();
-```
-#### Converting back to a stream og objects
-`Stream<Integer> stream = intStream.boxed()`
-#### OptionalInt
+
 ```
 OptionalInt maxCalories = menu().stream()
 				.mapToInt(Dish::getCalories)
@@ -153,8 +101,10 @@ int max = maxCalories.orElse(1);
 
 Building streams
 -----------------------	
+
 #### Streams from values
 ` Stream<String> stream = Stream.of("Carmen", "Teodor");`
+
 #### Streams from arrays
 ```
 int[] numbers = {1, 2, 3}
@@ -172,29 +122,35 @@ try (Stream<String> lines = Files.lines(Paths.get("data.txt"), Charset.defaultCh
 ```
 #### Streams from function
   * Iterate - static <T> Stream<T> iterate(T seed, UnaryOperator<T> f)
-  ```
-  Stream.iterate(0, n -> n + 2)
-  	.limit(10)
-	.forEach(System.out::println);
-  ```
+```
+Stream.iterate(0, n -> n + 2)
+.limit(10)
+.forEach(System.out::println);
+```
   * Generate - static <T> Stream<T> generate(Supplier<T> s)
+```
+Stream.generate(Math::random)
+.limit(10)
+.forEach(System.out::println);
   ```
-  Stream.generate(Math::random)
-  	.limit(10)
-	.forEach(System.out::println);
-  ```
+	
 ### Predefined collectors
+	
 #### Reducing and summarizing
+
 `long howManydishes = menu.stream().collect(Collectors.counting());`
 `long howManydishes = menu.stream().count();`
+
 ##### Finding the maximum
 ```
 Comparator<Dish> comparator = Comparator.comparingInt(Dish::getCalories);
 Optional<Dish> mostCalorieDish = menu.stream()
 					.collect(maxBy(comparator));
 ```
+
 Similar methods are: summingInt (return int), averagingInt (returns double).
 The result of these method can be obtains by usign summarizingInt
+
 ```
 IntSummaryStatistics menuStatistics = menu.stream().
 					.collect(sumarizingInt(Dish::getCalories)); 
