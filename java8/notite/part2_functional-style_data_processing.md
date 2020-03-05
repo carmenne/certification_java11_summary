@@ -92,6 +92,34 @@ int max = maxCalories.orElse(1);
 
 Building streams
 -----------------------	
-
-
+#### Streams from values
+` Stream<String> stream = Stream.of("Carmen", "Teodor");`
+#### Streams from arrays
+```
+int[] numbers = {1, 2, 3}
+int sum = Arrays.stream(numbers).sum(); // 6
+```
+#### Streams from files
+```
+long uniqueWords = 0;
+try (Stream<String> lines = Files.lines(Paths.get("data.txt"), Charset.defaultCharset())) {
+	uniqueWords = lines.flatMap(line -> Arrays.stream(line.split(" ")))
+			   .distinct()
+			   .count();	
+} catch (IOException e) {
+}
+```
+#### Streams from function
+  * Iterate - static <T> Stream<T> iterate(T seed, UnaryOperator<T> f)
+  ```
+  Stream.iterate(0, n -> n + 2)
+  	.limit(10)
+	.forEach(System.out::println);
+  ```
+  * Generate - static <T> Stream<T> generate(Supplier<T> s)
+    ```
+  Stream.generate(Math::random)
+  	.limit(10)
+	.forEach(System.out::println);
+  ```
 	
