@@ -137,13 +137,51 @@ The result of these method can be obtains by usign summarizingInt
 ```
 IntSummaryStatistics menuStatistics = menu.stream().
 					.collect(sumarizingInt(Dish::getCalories)); 
-					// IntSummaryStatistics {count=9, sum=4300, min=120, average=477.777.., max=8}
+		// IntSummaryStatistics {count=9, sum=4300, min=120, average=477.777.., max=8}
 ```
+	
 ##### Joining strings
+	
 `String shortMenu = menu.menu().map(Dish::getName).collect(joining(", "));`
+
 ##### Generalized summarization with reduction
 ```
 int totalCalories = menu.stream().collect(reducing(0, Dish::getCalories, (i, j) -> i + j));
 Optional<Dish> mostCaloriesDish = menu.stream().collect(reducing(
 	(d1,d2) -> d1.getClories() > d2.getCalories() ? d1 : d2));
+```
+##### Collect vs reduce
+public static <T,U> Collector<T,?,U> reducing(U identity, // intial value
+                                              Function<? super T,? extends U> mapper, // transformation function
+                                              BinaryOperator<U> op) // agregatign function
+<U> U reduce(U identity,
+             BiFunction<U,? super T,U> accumulator,
+             BinaryOperator<U> combiner)
+
+#### Grouping
+```
+Map<Dish.Type, List<Dish>> dishesByCalories = menu.stream()
+						     .collect(groupingBy(Dish::getType));	
+```
+##### Multilevel grouping
+```
+Map<Dish.Type, map<CaloricLevel, List<Dish>> dishByTypeAndCalories = 
+			menu.stream().collect(groupingBy(Dish::getType, groupingBy(this::getCaloricLevel)));
+CaloriLevel getCaloricLevel(Dish dish) {
+	if (dish.getCalories() <= 400) return CaloriesLevel.DIET;
+	else if dish.getCalories() <= 700) return CaloriesLevel.NORMAL;
+	else return CaloriesLevel.FAT;
+}
+```
+
+##### Collecting data in subgroups
+```
+Map<Dish.Type, Long> dishCountByType = menu.stream().collect(groupingBy(Dish::getType, counting()));
+\\ {MEAT=3, FISH=2, OTHER=4
+```
+##### Adaptinh the collector result to a different type
+```
+Map<Dish.Type, Dish> mostCaloricByType = menu.stream()
+					     .collect(groupingBy(Dish::getType, collectingAndThen(
+					     	maxBy(comparingInt(Dish::getCalories)), Optional::get)));
 ```
