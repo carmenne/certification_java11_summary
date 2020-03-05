@@ -73,6 +73,7 @@ Primitive stream specializations are: IntStream, LongStream, DoubleStream (they 
 #### Mapping to a numeric stream
 The most common methods are: mapToInt, mapToDouble, mapToLong.
 e.g.
+|Operation|Type|Return Type|Type/functional interface used|Function descriptor|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |filter|intermediate|Stream<T>|Predicate<T>|T->boolean|
 |distinct|intermediate<br>(stateful-unbounded)|Stream<T>|||
