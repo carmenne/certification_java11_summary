@@ -122,4 +122,28 @@ try (Stream<String> lines = Files.lines(Paths.get("data.txt"), Charset.defaultCh
   	.limit(10)
 	.forEach(System.out::println);
   ```
-	
+### Predefined collectors
+#### Reducing and summarizing
+`long howManydishes = menu.stream().collect(Collectors.counting());`
+`long howManydishes = menu.stream().count();`
+##### Finding the maximum
+```
+Comparator<Dish> comparator = Comparator.comparingInt(Dish::getCalories);
+Optional<Dish> mostCalorieDish = menu.stream()
+					.collect(maxBy(comparator));
+```
+Similar methods are: summingInt (return int), averagingInt (returns double).
+The result of these method can be obtains by usign summarizingInt
+```
+IntSummaryStatistics menuStatistics = menu.stream().
+					.collect(sumarizingInt(Dish::getCalories)); 
+					// IntSummaryStatistics {count=9, sum=4300, min=120, average=477.777.., max=8}
+```
+##### Joining strings
+`String shortMenu = menu.menu().map(Dish::getName).collect(joining(", "));`
+##### Generalized summarization with reduction
+```
+int totalCalories = menu.stream().collect(reducing(0, Dish::getCalories, (i, j) -> i + j));
+Optional<Dish> mostCaloriesDish = menu.stream().collect(reducing(
+	(d1,d2) -> d1.getClories() > d2.getCalories() ? d1 : d2));
+```
