@@ -239,5 +239,11 @@ Map<Boolean, List<Dish>> partitionedMenu = menu.stream().collect(partitioningBy(
 |Optional<Dish> maxByCalories = menu.stream().maxBy(comparingInt(Dish::getCalories))|
 |minBy|Optional<T>|return the minimum as defined by a comparator|
 |Optional<Dish> minByCalories = menu.stream().minBy(comparingInt(Dish::getCalories))|
-|reducing|The type produced by the reduce operation|Reduce the stream to a single value starting  from an initial value used as accumulator and iteratively combining with each item of  stream using a BinaryOperator|
+|reducing|The type produced by  the reduce operation|Reduce the stream to a single value starting  from an initial value used as accumulator and iteratively combining with each item of  stream using a BinaryOperator|
 |int sum = menu.stream().collect(reducing(0, Dish::getCalories, Integer::sum))|
+|collectingAndThen|The type returned by  the transforming function|wrap another collector and apply a transformation  function to its result|
+|int howManyDishes = menu.stream().collect(collectingAndThen(toList(), List::size))|
+|groupingBy|Map<K, List<T>>|group the items in the stream based on the value of  one of their properties and use those   values as keys in the resulting Map|
+|Map<Dish.Type, List<Dish>> dishByType = menu.stream().collect(groupingBy(Dish::getType))|
+|partitioningBy|Map<Boolean, List<T>>|partition the items in the stream based on the results of the application  of a predicate to each of them|
+|Map<Boolean, List<Dish>> begetarianDishes = menu.stream().minBy(partitioningBy(Dish::isVegetarian))|
