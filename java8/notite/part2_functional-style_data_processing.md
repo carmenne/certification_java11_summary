@@ -220,4 +220,18 @@ Map<Boolean, List<Dish>> partitionedMenu = menu.stream().collect(partitioningBy(
 |Factory method|Returned type|Used to|
 | ------------- | ------------- | ------------- |
 |toList|List<T>|gather all the stream's items in a list|
-
+|List<Dish> dishes = menu.stream().collect(toList());|
+|toSet|Set<T>|gather all the stream's items in a set|
+|Set<Dish> dishes = menu.stream().collect(toSet());|
+|toCollection|Collection<T>|gather all the stream's items in a collection|
+|Collection<Dish> dishes = menu.stream().collect(toCollection(), ArrayList::new);|
+|counting|Long|Counting the number of items in a stream|
+|long howManyDishes = menu.stream().collect(counting());|
+|summingInt|Integer|Summing the values of an integer property of the items in a stream|
+|int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));|
+|averagingInt|Double|Averaging the values of an integer property of the items in a stream|
+|double averageCalories = menu.stream().collect(averagingInt(Dish::getCalories));|
+|summarizingInt|IntSummaryStatistics|Collects statistics such as total, max, min, average|
+|IntSummaryStatistics statistics = menu.stream().collect(summarizingInt(Dish::getCalories));|
+|joining|String|Concatenate the string resulting from the invocation of the toString method|
+|String shortMenu = menu.stream().collect(joining(", ");|
