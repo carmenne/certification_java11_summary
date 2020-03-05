@@ -235,3 +235,11 @@ Map<Boolean, List<Dish>> partitionedMenu = menu.stream().collect(partitioningBy(
 |IntSummaryStatistics statistics = menu.stream().collect(summarizingInt(Dish::getCalories));|
 |joining|String|Concatenate the string resulting from the invocation of the toString method|
 |String shortMenu = menu.stream().collect(joining(", ");|
+|maxBy|Optional<T>|return the maximum as defined by a comparator|
+|Optional<Dish> maxByCalories = menu.stream().maxBy(comparingInt(Dish::getCalories))|
+|minBy|Optional<T>|return the minimum as defined by a comparator|
+|Optional<Dish> minByCalories = menu.stream().minBy(comparingInt(Dish::getCalories))|
+|reducing|The type produced by the reduce operation|Reduce the stream to a single value starting <br>
+	from an initial value used as accumulator and iteratively combining with each item of <br>
+	stream using a BinaryOperator|
+|int sum = menu.stream().collect(reducing(0, Dish::getCalories, Integer::sum))|
