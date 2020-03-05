@@ -327,8 +327,6 @@ Map<Boolean, List<Dish>> partitionedMenu = menu.stream().collect(partitioningBy(
 ```
 #### The static factory methods of the Collectors class
 |Factory method|Returned type|Used to|
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- |
 |toList|List<T>|gather all the stream's items in a list|
-|List<Dish> dishes = menu.stream().collect(toList());|
-||||
-||||
+
