@@ -117,7 +117,7 @@ try (Stream<String> lines = Files.lines(Paths.get("data.txt"), Charset.defaultCh
 	.forEach(System.out::println);
   ```
   * Generate - static <T> Stream<T> generate(Supplier<T> s)
-    ```
+  ```
   Stream.generate(Math::random)
   	.limit(10)
 	.forEach(System.out::println);
