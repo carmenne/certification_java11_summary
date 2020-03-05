@@ -73,129 +73,63 @@ Primitive stream specializations are: IntStream, LongStream, DoubleStream (they 
 #### Mapping to a numeric stream
 The most common methods are: mapToInt, mapToDouble, mapToLong.
 e.g.
-27
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-28
 |filter|intermediate|Stream<T>|Predicate<T>|T->boolean|
-29
 |distinct|intermediate<br>(stateful-unbounded)|Stream<T>|||
-30
 |skip|intermediate<br>(stateful-bounded)|Stream<T>|long||
-31
 |limit|intermediate<br>(stateful-bounded)|Stream<T>|long||
-32
 |peek|intermidiate|Stream<T>|<Consumer<T>|T->void|
-33
 |map|intermediate|Stream<R>|<Function<T,R>|T->R|
-34
 |flatMap|intermediate|Stream<R>|Function<T,Stream<R>>|T->Stream<R>|
-35
 |sorted|intermediate<br>(stateful-unbounded)|Stream<T>|Comparator<T>|(T,T)->int|
-36
 |anyMatch|Terminal|boolean|Predicate<T>|T->boolean|
-37
 |noneMatch|Terminal|boolean|Predicate<T>|T->boolean|
-38
 |anyMatch|Terminal|boolean|Predicate<T>|T->boolean|
-39
 |allMatch|Terminal|boolean|Predicate<T>|T->boolean|
-40
 |findAny|Terminal|Optional<T>|||
-41
 |findFirst|Terminal|Optional<T>|||
-42
 |forEach|Terminal|void|Consumer<T>|T->void|
-43
 |collect|Terminal|R|Collector<T,A,R>||
-44
 |reduce|Terminal(stateful-bounded)|Optional<T>|BinaryOperator<T>|(T,T)->T|
-45
 |count|Terminal|long|||
-46
-​
-47
 #### findFirst vs. findAny
-48
 findFirst is constraining when used in parallel streams
-49
 #### Reducing
-50
 There are more overloaded methods:
-51
  * reduce(0, Integer::sum) returns an int
-52
  * reduce(Integer::sum) returns an Optional<Integer> (optional is needed because the stream can be empty)
-53
 ```diff
-54
 - * reduce(0, accumulator, combiner) -> for parallel streams
-55
 ```
-56
-        
-57
 #### Reduce in parallel
-58
 To sum all the elements in the stream, theres is little modification to the sequential version:
-59
 ```java
-60
 int sum = numbers.parallelStream().reduce(0, Integer::sum);
-61
 ```
-62
 But there is a price to pay to execute this code in parallel: the lambda passed to reduce can't change state (for example
-63
 instance variables), and the operation needs to be associative to it can be executed in any order.
-64
-​
-65
 #### Stream operations: stateless vs. stateful
-66
 Operations like map and filter don't have an internal state (assuming the user supplied lambda or method reference has no internam mutable state).
-67
 Operations like reduce, sum, and max need to have internal state to accumulate the result.The internal state is of bounded size (e.g. integer, double) no matter how many elements are in the stream being processed.
-68
 Operations like sorted, distinct require knowing the previous history. For example, sorting requires all the elements to be buffered before a single item can be added to the output stream: the storage requirement of this operation is unbounded.
-69
-​
-70
 Numeric streams
-71
 ----------------------- 
-72
 Primitive stream specializations are: IntStream, LongStream, DoubleStream (they are avoiding hidden boxing costs)
-73
 #### Mapping to a numeric stream
-74
 The most common methods are: mapToInt, mapToDouble, mapToLong.
-75
 e.g.
-76
 ```
-77
 int calories = menu.stream()
-78
                 .mapToInt(Dish::getCalories()
-79
                 .sum();
-80
 ```
-81
 #### Converting back to a stream og objects
-82
 `Stream<Integer> stream = intStream.boxed()`
-83
 #### OptionalInt
-84
 ```
-85
 OptionalInt maxCalories = menu().stream()
-86
                                 .mapToInt(Dish::getCalories)
-87
                                 .max();
-88
 int max = maxCalories.orElse(1);                                
 @carmenne
 Commit changes
