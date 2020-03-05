@@ -166,7 +166,8 @@ Map<Dish.Type, List<Dish>> dishesByCalories = menu.stream()
 ##### Multilevel grouping
 ```
 Map<Dish.Type, map<CaloricLevel, List<Dish>> dishByTypeAndCalories = 
-			menu.stream().collect(groupingBy(Dish::getType, groupingBy(this::getCaloricLevel)));
+			menu.stream().collect(groupingBy(Dish::getType, 
+				groupingBy(this::getCaloricLevel)));
 CaloriLevel getCaloricLevel(Dish dish) {
 	if (dish.getCalories() <= 400) return CaloriesLevel.DIET;
 	else if dish.getCalories() <= 700) return CaloriesLevel.NORMAL;
@@ -183,5 +184,6 @@ Map<Dish.Type, Long> dishCountByType = menu.stream().collect(groupingBy(Dish::ge
 ```
 Map<Dish.Type, Dish> mostCaloricByType = menu.stream()
 					     .collect(groupingBy(Dish::getType, collectingAndThen(
-					     	maxBy(comparingInt(Dish::getCalories)), Optional::get)));
+					     	maxBy(comparingInt(Dish::getCalories)), 
+								Optional::get)));
 ```
