@@ -69,6 +69,26 @@ Operations like sorted, distinct require knowing the previous history. For examp
 
 Numeric streams
 -----------------------	
+Primitive stream specializations are: IntStream, LongStream, DoubleStream (they are avoiding hidden boxing costs)
+#### Mapping to a numeric stream
+The most common methods are: mapToInt, mapToDouble, mapToLong.
+e.g.
+```
+int calories = menu.stream()
+		.mapToInt(Dish::getCalories()
+		.sum();
+```
+#### Converting back to a stream og objects
+`Stream<Integer> stream = intStream.boxed()`
+#### OptionalInt
+```
+OptionalInt maxCalories = menu().stream()
+				.mapToInt(Dish::getCalories)
+				.max();
+int max = maxCalories.orElse(1);				
+```
+#### Numeric ranges
+`IntStream numbers = IntStream.rangeClosed(1, 100);`
 
 Building streams
 -----------------------	
