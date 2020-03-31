@@ -45,7 +45,7 @@ The methods of the Optional class:
 The use of primitive optionals is discouraged because they lack the map, flatMap and filter methods.
 
 #### Futures limitations
-It is difficult to epxress dependencies between results of a Future. It does not allow for a concise, declarative way of combining more asynchronous task.
+It is difficult to express dependencies between results of a Future. It does not allow for a concise, declarative way of combining more asynchronous task.
 CompletableFuture is to a plain Future what Stream is to a Collection.
 
 
