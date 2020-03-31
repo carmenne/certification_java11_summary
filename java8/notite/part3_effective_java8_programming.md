@@ -27,3 +27,19 @@ The methods of the Optional class:
 |orElse |Returns the value if present or the given default value otherwise|
 |orElseGet Returns the value if present or the one provided by the given Supplier otherwise|
 |orElseThrow| Returns the value if present or throws the exception created by the given Supplier otherwise|
+
+#### Use cases of Optionals
+ * Wrap a potential null value in an optional
+ * Exceptions
+ ```
+ public static Optional<Integer> stringToInt(String s) {
+  try {
+    return Optional.of(Integer.parseInt(s));
+  } catch (NumberFormatException e) {
+    return Optional.empty();
+  }
+ }
+ ```
+
+#### Primitive optionals
+The use of primitive optionals is discouraged because they lack the map, flatMap and filter methods.
