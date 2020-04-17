@@ -1,13 +1,18 @@
 Directory structure
+<pre>
 --src
   -- simleinterest
     - module-info.java
     -- simpleinterstpackage
       - SimpleInterestCalculator.java
-
+</pre>
 
 - compile a module
+```
 javac -d out --module-src-path src --module simpleinterest
+```
 
-- run 
+- run
+```
 java --module-path out --module simpleinterest/simpleinterestpackage.SimpleInterestCalculator
+```md new line
