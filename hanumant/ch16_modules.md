@@ -20,5 +20,6 @@ java --module-path out --module simpleinterest/simpleinterestpackage.SimpleInter
 
 - package
 ```
-jar --create --file simpleinterest.jar --main-class simpleinterestpackage.SimpleInterestCalculator -C out/simpleinterest
+jar --create --file simpleinterest.jar --main-class simpleinterestpackage.SimpleInterestCalculator
+    -C out/simpleinterest
 ```
