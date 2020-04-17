@@ -15,4 +15,10 @@ javac -d out --module-src-path src --module simpleinterest
 - run
 ```
 java --module-path out --module simpleinterest/simpleinterestpackage.SimpleInterestCalculator
-```md new line
+```
+--module = 'module name'/'main class name'
+
+- package
+```
+jar --create --file simpleinterest.jar --main-class simpleinterestpackage.SimpleInterestCalculator -C out/simpleinterest
+```
