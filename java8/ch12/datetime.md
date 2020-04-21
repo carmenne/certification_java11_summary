@@ -59,7 +59,7 @@ Duration.between(instant1, instant2);
 Because LocalDateTime (LocalTime) are designed for humand and Instant is desinged for machines, you cannot mix them in the `Duration.between` method. </br>
 Because Duration is designed to express an amount of time in seconds and eventually in nanoseconds, you can't pass a LocalDate method to `Duration.between` either. Period can be used for expressing an amount of time in terms of years, months and days.
 
-#### [Period]
+#### [Period](https://docs.oracle.com/javase/8/docs/api/java/time/Period.html)
 You can find the difference between two LocalDates wiht the between factory method of the Period class.
 ```
 Period tenDays = Period.between(LocalDate.of(2014, 3, 8), LocalDate.of(2014, 3, 18));
