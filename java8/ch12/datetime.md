@@ -29,7 +29,7 @@ LocalDateTime localDateTime = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45, 20
 LocalDateTime can also be created by passing a time to LocalDate (atTime) or passing a date to LocalTime (atDate).
 You can also extract LocalDate or LocalTime component from a LocalDateTime using toLocalDate or toLocalTime methods.
 
-#### [Instant]: 
+#### [Instant](https://docs.oracle.com/javase/8/docs/api/java/time/Instant.html): 
 A date and time for machines - represents the number of seconds passed since the Unix epoch time: the midnight of January 1, 1970 UTC.
 It can be created:
 - by passing the number of seconds to the static factory method `ofEpochSecond`
@@ -48,7 +48,7 @@ You can work with instant using Period and Duration
 
 LocalDate, LocalTime and LocalDateTime implement the Temporal interface which defines how to read a point in time.
 
-#### [Duration]
+#### [Duration](https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html)
 Is the duration between two temporal objects. The `between` static factory method of the Duration class is used two creation a duration between two LocalTimes, two LocalDateTimes or two Instants objects as follow:
 
 ```
