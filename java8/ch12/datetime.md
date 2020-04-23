@@ -90,3 +90,18 @@ Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1);
 |negated|no||
 |plus|no||
 |substractFrom|no||
+
+#### Common methods of date-time classes representing a point in time
+|Method|Static|Description|
+|-------------|-------------|-----|
+|from|Yes| Creates an instance of this class from the passed temporal object|
+|now|Yes| Creates a temporal object from the system clock|
+|of|Yes| Creates an instance of this temporal object from its constituent parts|
+|parse|Yes| Creates an instance of this temporal object from a String|
+|atOffset|No|Combines this temporal object with a zone offset|
+|atZone|No|Combines this temporal object with a time zone|
+|format|No|Converts this temporal object into a String using the specified formatter (not available for Instant)|
+|get|No|Reads part of the state of this temporal object|
+|minus|No|Creates a copy of this temporal object with an amount of time subtracted|
+|plus|No|Creates a copy of this temporal object with an amount of time added|
+|with|No|Creates a copy of this temporal object with part of the state changed|
