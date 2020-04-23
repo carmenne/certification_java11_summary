@@ -74,7 +74,7 @@ Period threeWeeks = Period.ofWeeks(3);
 Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1);
 ```
 
-#### Common methods of date-time classes representing an interval
+##### Common methods of date-time classes representing an interval
 |Method|Static|Description|
 |-------------|-------------|-----|
 |between|yes||
@@ -91,9 +91,9 @@ Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1);
 |plus|no||
 |substractFrom|no||
 
-#### Common methods of date-time classes representing a point in time
+##### Common methods of date-time classes representing a point in time
 |Method|Static|Description|
-|-------------|-------------|-----|
+|-------------|-------------|----|
 |from|Yes| Creates an instance of this class from the passed temporal object|
 |now|Yes| Creates a temporal object from the system clock|
 |of|Yes| Creates an instance of this temporal object from its constituent parts|
@@ -105,3 +105,36 @@ Period twoYearsSixMonthsOneDay = Period.of(2, 6, 1);
 |minus|No|Creates a copy of this temporal object with an amount of time subtracted|
 |plus|No|Creates a copy of this temporal object with an amount of time added|
 |with|No|Creates a copy of this temporal object with part of the state changed|
+
+
+#### Complex date time manipulation ([TemporalAdjuster](https://docs.oracle.com/javase/8/docs/api/java/time/temporal/TemporalAdjuster.html))
+Complex data manipulations can be done with predefined TemporalAdjusters (static methods in [java.time.temporal.TemporalAsjusters](https://docs.oracle.com/javase/8/docs/api/java/time/temporal/TemporalAdjuster.html)) or you can provide your own implementation. Actually TemporalAdjuster is a functional interface.
+```
+Temporal adjustInto(Temporal temporal)
+```
+
+Use of predefined TemporalAdjusters
+```
+import static java.time.temporal.TemporalAdjusters.*;
+LocalDate date1 = LocalDate.of(2014, 3, 18); // 18-03-2014
+var date2 = date1.with(nextOrSame(DayOfWeek.SUNDAY)); // 23-03-2014
+var date3 = date2.with(lastDayOfMonth()); // 31-03-2014
+```
+
+##### The factory methods of the TemporalAdjusters class
+
+|Method|Description|
+|-------------|-------------|
+|dayOfWeekInMonth|Creates a new date in the same month with the ordinal day of week  |
+|firstDayOfMonth|Creates a new date set to the first day of the current month   |
+|firstDayOfNextMonth|Creates a new date set to the first day of the next month   |
+|firstDayOfNextYear|Creates a new date set to the first day of the next year   |
+|firstDayOfYear|Creates a new date set to the first day of the current year   |
+|firstInMonth|Creates a new date in the same month with the first matching day of week |
+|lastDayOfMonth|Creates a new date set to the last day of the current month   |
+|lastDayOfNextMonth|Creates a new date set to the last day of the next month   |
+|lastDayOfNextYear|Creates a new date set to the last day of the next year   |
+|lastDayOfYear|Creates a new date set to the last day of the current year   |
+|lastInMonth|Creates a new date in the same month with the last matching day of week |
+|next </br>  previous|Creates a new date set to the first occurrence of the specified day of week after/before the date being adjusted|
+|nextOrSame </br> previousOrSame| Creates a new date set to the first occurrence of the specified day of week after/before the date being adjusted unless it’s already on that day, in which case the same object is returned|
