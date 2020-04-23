@@ -138,3 +138,49 @@ var date3 = date2.with(lastDayOfMonth()); // 31-03-2014
 |lastInMonth|Creates a new date in the same month with the last matching day of week |
 |next </br>  previous|Creates a new date set to the first occurrence of the specified day of week after/before the date being adjusted|
 |nextOrSame </br> previousOrSame| Creates a new date set to the first occurrence of the specified day of week after/before the date being adjusted unless it’s already on that day, in which case the same object is returned|
+
+#### Working with different time zones and calendars
+A time zone is a set of rules corresponding to a region in which the standard time is the same.
+There are about 40 of them held in instances of the [ZoneRules](https://docs.oracle.com/javase/8/docs/api/java/time/zone/ZoneRules.html) class. You can simply call
+getRules() on a ZoneId to obtain the rules for that given time zone. A specific ZoneId is
+identified by a region ID, for example:
+```
+ZoneId romeZone = ZoneId.of("Europe/Rome");
+```
+The region IDs are all in the format “{area}/{city}” and the set of available locations is the one
+supplied by the IANA Time Zone Database. You can also convert an old TimeZone object to a
+ZoneId by using the new method toZoneId:
+```
+ZoneId zoneId = TimeZone.getDefault().toZoneId();
+```
+
+Once you have a ZoneId object, you can combine it with a LocalDate, a LocalDateTime, or an
+Instant, to transform it into ZonedDateTime instances, which represent points in time relative
+to the specified time zone
+```
+LocalDate date = LocalDate.of(2014, Month.MARCH, 18);
+ZonedDateTime zdt1 = date.atStartOfDay(romeZone);
+
+LocalDateTime dateTime = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45);
+ZondeDateTime zdt2 = dateTime.atZone(romeZone);
+
+Instant instant = Instant.now();
+ZonedDateTime zdt3 = instant.atZone(romeZone);
+```
+
+##### Convert from a LocalDateTime to an Instant using ZoneId
+```
+LocalDateTime dateTime = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45); // 2014-03-18T13:45
+localDateTime.toInstant(ZoneOffset.of("+02:00")); //  2014-03-18T11:45:00Z
+
+```
+Instant represents time at UTC. It is not adjusted for the timeZone. LocalDateTime is the UTC time adjusted for the timeZone.
+
+FixedOffset can be retrieved via `ZoneOffset.of("+02:00")` corresponding to `ZoneId.of("Europe/Amsterdam")` when it is summer time.
+A ZoneOffset defined in this way does not have Daylight Saving Time management, and for this reason it is not suggested in the majority of casses.
+[ZoneOffset](https://docs.oracle.com/javase/8/docs/api/java/time/ZoneOffset.html) extands [ZoneId](https://docs.oracle.com/javase/8/docs/api/java/time/ZoneId.html)
+
+```
+LocalDateTime dateTime = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45);
+OffsetDateTime dateTimeAmsterdam = OffsetDateTime.of(dateTime, ZoneOffset.of("+02:00"))
+```
