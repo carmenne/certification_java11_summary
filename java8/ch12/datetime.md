@@ -176,6 +176,7 @@ localDateTime.toInstant(ZoneOffset.of("+02:00")); //  2014-03-18T11:45:00Z
 ```
 Instant represents time at UTC. It is not adjusted for the timeZone. LocalDateTime is the UTC time adjusted for the timeZone.
 
+#### Fixed offset from UTC/Greenwich
 FixedOffset can be retrieved via `ZoneOffset.of("+02:00")` corresponding to `ZoneId.of("Europe/Amsterdam")` when it is summer time.
 A ZoneOffset defined in this way does not have Daylight Saving Time management, and for this reason it is not suggested in the majority of casses.
 [ZoneOffset](https://docs.oracle.com/javase/8/docs/api/java/time/ZoneOffset.html) extands [ZoneId](https://docs.oracle.com/javase/8/docs/api/java/time/ZoneId.html)
@@ -184,3 +185,27 @@ A ZoneOffset defined in this way does not have Daylight Saving Time management, 
 LocalDateTime dateTime = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45);
 OffsetDateTime dateTimeAmsterdam = OffsetDateTime.of(dateTime, ZoneOffset.of("+02:00"))
 ```
+#### using alternative calendar systems
+You can create any Temporal instance from their `from` static method as below:
+```
+LocalDate date = LocalDate.of(2014, Month.MARCH, 18);
+JapaneseDate japaneseDate = JapaneseDate.from(date);
+```
+
+Alternatively, you can explicitly create a calendar system for a specific Locale and create an
+instance of a date for that Locale.
+```
+Chronology japaneseChronology = Chronology.ofLocale(Locale.JAPAN);
+ChronoLocalDate now = japaneseChronology.dateNow();
+```
+
+The designers of the Date and Time API advise using LocalDate instead of Chrono-LocalDate for
+most cases; this is because a developer could make assumptions in their code that unfortunately
+aren’t true in a multicalendar system. Such assumptions might include that the value of a day or
+month will never be higher than 31, that a year contains 12 months, or even that a year has a
+fixed number of months. For these reasons, it’s recommended to use LocalDate throughout your
+application, including all storage, manipulation, and interpretation of business rules, whereas
+you should employ Chrono-LocalDate only when you need to localize the input or output of your
+program.
+
+
