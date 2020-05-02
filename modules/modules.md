@@ -1,9 +1,10 @@
+<pre>
 -- mods
 -- out
 -- src
-	--- module-info.java
+    --- module-info.java
     -- com
-		-- learning
-			-- datastructures
-				-- MyStack.java
-		
+	-- learning
+	    -- datastructures
+		--- MyStack.java
+<pre>
