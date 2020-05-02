@@ -26,7 +26,7 @@ throws an excpetion (more specific, more generic, same etc)
 	# javac -d . A.java,B.java [javac -d . *.java]
 	The compiler will detect dependencies between the classes and compiled them in the correct order
 	
-# Package classes into jar
+# [Package classes into jar](https://docs.oracle.com/javase/tutorial/deployment/jar/build.html)
 	Assuming the structure
 		/home
 			/Account.java
