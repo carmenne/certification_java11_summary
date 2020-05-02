@@ -20,14 +20,14 @@ Module names look a lot like package names. Each segment is separated by a perio
 and uses characters valid in Java identifiers.
 
 #### Modules
-opens is for reflection and uses declares an API that consumes a service. 
-module-info.java file can be completely empty. 
-Modules are required to have a module-info.java file at the root directory of the module.
+- opens is for reflection and uses declares an API that consumes a service. 
+- module-info.java file can be completely empty. 
+- Modules are required to have a module-info.java file at the root directory of the module.
 
 #### Exceptions
-Any Java type, including Exception and RuntimeException, can be declared as the return type. However, this will simply return the object rather than throw an exception.
-Classes listed in the throws part of a method declaration must extend java.lang.Throwable. This includes Error, Exception, and RuntimeException
-Arbitrary classes such as String can’t be declared in a throws clause
+- Any Java type, including Exception and RuntimeException, can be declared as the return type. However, this will simply return the object rather than throw an exception.
+- Classes listed in the throws part of a method declaration must extend java.lang.Throwable. This includes Error, Exception, and RuntimeException
+- Arbitrary classes such as String can’t be declared in a throws clause
 
 #### main method
 `public static void main(String[] args)` is the canonical main() method signature.  
@@ -50,32 +50,32 @@ public void method throws IOException {
 	//
 }
 ```
-A method that declares an exception isn’t required to throw one.
-Unchecked exceptions can be thrown in any method.
-A broader Exception cannot be thrown.
+- A method that declares an exception isn’t required to throw one.
+- Unchecked exceptions can be thrown in any method.
+- A broader Exception cannot be thrown.
 
-Both runtime and checked exceptions can be declared, although only checked exceptions must be handled or declared
-Legally, you can handle java.lang.Error subclasses, which are not subclasses of Exception, but it’s not a good idea
-Finally, it is true that all exceptions are subclasses of Throwable
-Only checked exceptions are required to be handled or declared.
-An Error is intended to be thrown by the JVM and never caught by the programmer.
-While a programmer could throw or catch an Error, this would be a horrible practice.
-`catch (Exception | RuntimeException e)` does not compile as RuntimeException is a subclass of Exception in the multi-catch block, making it redundant. 
+- Both runtime and checked exceptions can be declared, although only checked exceptions must be handled or declared
+- Legally, you can handle java.lang.Error subclasses, which are not subclasses of Exception, but it’s not a good idea
+- Finally, it is true that all exceptions are subclasses of Throwable
+- Only checked exceptions are required to be handled or declared.
+- An Error is intended to be thrown by the JVM and never caught by the programmer.
+- While a programmer could throw or catch an Error, this would be a horrible practice.
+- `catch (Exception | RuntimeException e)` does not compile as RuntimeException is a subclass of Exception in the multi-catch block, making it redundant. 
 
 #### Multi catch blocks
-Subclasses (narrower exceptions) should be declared in a block before
-the broader exceptions when having more catch blocaks
+- Subclasses (narrower exceptions) should be declared in a block before
+- the broader exceptions when having more catch blocaks
 
 
 #### public class and filenames
-Java allows at most one public class in the same file.
+- Java allows at most one public class in the same file.
 
 #### Arrays
-`public static int mismatch​(boolean[] a, boolean[] b)`
-Finds and returns the index of the first mismatch between two boolean arrays, otherwise return -1 if no mismatch is found.
+- `public static int mismatch​(boolean[] a, boolean[] b)`
+- Finds and returns the index of the first mismatch between two boolean arrays, otherwise return -1 if no mismatch is found.
 
 #### Constructors
-Since there is no explicit call to the parent constructor, the compiler inserts super()as the first line of the constructor;
+- Since there is no explicit call to the parent constructor, the compiler inserts super()as the first line of the constructor;
 ```
 class Test2 {
 	
@@ -104,7 +104,7 @@ public class Test extends Test2 {
 ```
 
 #### Strings
-`intern` method: When the intern method is invoked, if the pool already contains a string equal 
+- `intern` method: When the intern method is invoked, if the pool already contains a string equal 
 to this String object as determined by the equals(Object) method, 
 then the string from the pool is returned. Otherwise, this String object is added to the pool 
 and a reference to this String object is returned.
