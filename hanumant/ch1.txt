@@ -21,8 +21,8 @@ throws an excpetion (more specific, more generic, same etc)
 		/home
 			/Account.java
 			/target/com/carmen/accounting/Account.class
-	java -classpath ./target com/carmen/accoutning/Account.class
-	
+	java -classpath ./target com/carmen/accounting/Account  or (com.carmen.accounting.Account)
+
 	# javac -d . A.java,B.java [javac -d . *.java]
 	The compiler will detect dependencies between the classes and compiled them in the correct order
 	
