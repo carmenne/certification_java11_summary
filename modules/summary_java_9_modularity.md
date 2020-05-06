@@ -38,6 +38,17 @@ java --module-path mods --module <modulename>
 #### Module resolution (--show-module-resolution, --limit-modules)
 Missing dependencies are noticed at compile-time.
 `--limit-modules`
+```
+java -p out --show-module-resolution --limit-modules java.base -m com.javamodularity/com.javamodularity.helloworld.HelloWorld
+
+output:
+root com.javamodularity file:///home/carmen/projects/certification_java11_summary/modules/out/com.javamodularity/
+Hello Modular World!
+
+```
+```diff 
+- Without `--limit-modules` flag, the resolution list will resolve the jdk modules as well and the list will be much higher
+```
 
 #### Cyclic readability
 No cyclic dependencies are allowed at compile time, however at runtime because frameworks are using refelction and because reflection frameworks are automatically creating a readability relation at run-time, cyclic dependency is allowed.
