@@ -44,3 +44,5 @@ No cyclic dependencies are allowed at compile time, however at runtime because f
 For instance the application package has a dependency on spring, however spring also needs a dependency on the application module because it needs to invoke reflection on it
 
 #### Exports, qualified exports and a word on reflection
+`exports <packagename> to <modulename>` exports the package only to a target module. During compilation, the target module of a qualified export must be on the module path or be compiled at the same time.
+       
