@@ -70,7 +70,7 @@ The module system has special privileges to reach into the provider module to in
 A service consumer does not know which module provides an implementation.
 `uses` is used in the module descriptor to s[ecify which service (API) the service consumer wants to use.It instructs the ServiceLoader that this module wants to use implementation of the API (interface).
 `ServiceLoader.load(Type.class)` is the syntax for instantiating implementations of the interface. The ServiceLoader instantiates the classes lazily.
-<pre>
+</pre>
 
 <pre>
 A class appearing after `with` must have a public no-args constructor or a static provider method.
