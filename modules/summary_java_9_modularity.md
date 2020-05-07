@@ -77,6 +77,9 @@ A class appearing after `with` must have a public no-args constructor or a stati
 If there's no static provider method, the class is assumed to be the service implementation itself and must have a no-args public constructor. The compiler will complain when this is not the case.
 </pre>
 
+### Relfection
+Deep reflection (using setAccesibility on private fields) is disallowed with modules. In order to allow frameworks to keep using reflection `opens` clause can be used. In this way the framework will have access to the private and public fields for reflection at runtime but not at compile time (as it is not needed).
+
 ### Migration
 #### Top-down
 Move the application ode in a module
@@ -90,3 +93,7 @@ An automatic module has the following characteristics:
 - It exports all its packages.
 - It reads the classpath (or more precisely, the unnamed module as discussed later).
 - It cannot have split packages with other modules.
+
+The name of an automatic module can be specified in the newly introduced Automatic-Module-Name field of a META-INF/MANIFEST.MF file. If no name is specified, the module name is derived from the JAR’s filename:
+- dashes are replaced by dots;
+- versions are omitted
