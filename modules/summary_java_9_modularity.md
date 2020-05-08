@@ -79,7 +79,11 @@ If there's no static provider method, the class is assumed to be the service imp
 
 ### Relfection
 Deep reflection (using setAccesibility on private fields) is disallowed with modules. In order to allow frameworks to keep using reflection `opens` clause can be used. In this way the framework will have access to the private and public fields for reflection at runtime but not at compile time (as it is not needed).
-`opens` can be qualified `to` (`opens demo to jackson.databind`, where demo = package name, jackson.databind is an automatic module)
+`opens` can be qualified `to` (`opens demo to jackson.databind`, where demo = package name, jackson.databind is an automatic module)</br>
+For a class to able to read another class from another module, the following needs be true:
+- the class needs to be public (except for the deep reflection case);
+- the package from the other module has to be exported, or open in case of deep reflection;
+- the consuming module needs a requires to the other module (needs to have a readability relation)
 
 ### Migration
 #### Top-down
