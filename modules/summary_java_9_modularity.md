@@ -107,3 +107,13 @@ The name of an automatic module can be specified in the newly introduced Automat
 `jdeps <options> <path ...>`, path can be a pathname to a .class file, a directory, a JAR file.
 jdeps analyzes bytecode (not source code). The jdeps command shows the package-level or class-level dependencies of Java class files. The input class can be a path name to a .class file, a directory, a JAR file, or it can be a fully qualified class name to analyze all class files. The options determine the output. By default, jdeps outputs the dependencies to the system output. It can generate the dependencies in DOT language (see the -dotoutput option).
 
+#### Unamed module
+- The unamed module is created when code is loaded from the classpath. Code is loeaded from the classpath when the code is not in a module.
+- The unamed module reads all the modules
+- The unamed module exports all packages in order to allow for a plefixle migration. It does not, however, mean that code in a named module can access types in the unnamed module.
+- A named module cannot delcare a dependency on the unamed module
+- If a package is defined in both a named module and the unnamed module then the package in the unnamed module is ignored. 
+
+#### Automatic module
+
+#### Explicit module
