@@ -112,8 +112,15 @@ jdeps analyzes bytecode (not source code). The jdeps command shows the package-l
 - The unamed module reads all the modules
 - The unamed module exports all packages in order to allow for a plefixle migration. It does not, however, mean that code in a named module can access types in the unnamed module.
 - A named module cannot delcare a dependency on the unamed module
-- If a package is defined in both a named module and the unnamed module then the package in the unnamed module is ignored. 
+- If a package is defined in bhttp://openjdk.java.net/projects/jigsaw/spec/sotms/#compatibility--migrationoth a named module and the unnamed module then the package in the unnamed module is ignored. 
 
-#### Automatic module
+#### [Automatic module](http://openjdk.java.net/projects/jigsaw/spec/sotms/#compatibility--migration)
+- By placing, unmodified,  a traditional JAR on the module path instead of classpath, we can create an automatic module.
+- An automatic module is a named module defined implicitly (it does not have a module-info.java)
+- There is no practical way to tell, in advance, which other modules an automatic module might depend upon. After a module graph is resolved, therefore, an automatic module is made to read every other named module, whether automatic or explicit.
+- An automatic module exports all its packages
+- An automatic module grants implied readability to all other automatic modules
+- Automatic modules offer a middle ground between the chaos of the class path and the discipline of explicit modules.
 
 #### Explicit module
+An explicit module is a named module defined explicitly (it contains module-info.java)
