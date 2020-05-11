@@ -102,3 +102,7 @@ An automatic module has the following characteristics:
 The name of an automatic module can be specified in the newly introduced Automatic-Module-Name field of a META-INF/MANIFEST.MF file. If no name is specified, the module name is derived from the JAR’s filename:
 - dashes are replaced by dots;
 - versions are omitted
+
+#### jdpes
+`jdeps <options> <path ...>`
+<path> can be a pathname to a .class file, a directory, a JAR file.
