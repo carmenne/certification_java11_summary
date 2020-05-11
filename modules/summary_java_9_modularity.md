@@ -104,5 +104,6 @@ The name of an automatic module can be specified in the newly introduced Automat
 - versions are omitted
 
 #### jdpes
-`jdeps <options> <path ...>`
-<path> can be a pathname to a .class file, a directory, a JAR file.
+`jdeps <options> <path ...>`, path can be a pathname to a .class file, a directory, a JAR file.
+jdeps analyzes bytecode (not source code). The jdeps command shows the package-level or class-level dependencies of Java class files. The input class can be a path name to a .class file, a directory, a JAR file, or it can be a fully qualified class name to analyze all class files. The options determine the output. By default, jdeps outputs the dependencies to the system output. It can generate the dependencies in DOT language (see the -dotoutput option).
+
