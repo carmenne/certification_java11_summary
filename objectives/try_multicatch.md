@@ -13,6 +13,7 @@ try {
   e = new Exception();
 }
 ```
+##### Variable defined in multi-catch is final
 It is illegal to re-assing the variable e in multi-catch (e is final)
 ```
 try {
