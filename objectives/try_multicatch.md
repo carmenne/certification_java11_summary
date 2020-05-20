@@ -22,6 +22,30 @@ try {
   e = new Exception();  // compilation error
 }
 ```
+##### Statements in try
+In `try ()` you can only have statments that are variable declaration and initialization.
+The variable shuould be declared in the try statement. In cannot be declared outside the try statement and initialized inside the try statement.
+```
+NOK
+error: the try-with-resources resource must either be a variable declaration or 
+an expression denoting a reference to a final or effectively final variable
+
+Path path = Paths.get("Test.java");
+File file = path.toFile();
+BufferedReader reader;
+try (reader = new BufferedReader(new FileReader(file))) {
+}
+```
+```
+OK
+BufferedReader reader = new BufferedReader(new FileReader(file));
+try (var insideReader = reader) {
+}
+```
+
+##### ORDER
+The final blockes close in reverse order (the resources are closed in the reverse order in which they were created) immediately after the try block finishes.
+
 
 ##### Rethrow an exception
 'handle and declare' could refer to catching an exception, logging it and then throwing it again.
