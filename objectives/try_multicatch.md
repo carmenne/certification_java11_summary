@@ -28,6 +28,69 @@ The final blockes close in reverse order (the resources are closed in the revers
 
 ##### Surpressed exceptions
 
+What happens if the close method of the resource throws an exception
+```
+Closing - One...
+Error with closing
+
+public class TryExceptions {
+
+	public static void main(String[] args) {
+		try (One one = new One()) {
+			
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+}
+
+class One implements AutoCloseable {
+	
+	public void close() throws IOException {
+		System.out.println("Closing - One...");
+		throw new IOException ("Error with closing");
+	}
+}
+```
+
+what if try is also throwing exception?
+```
+Closing - One...
+Error in try block
+
+public class TryExceptions {
+
+	public static void main(String[] args) {
+		try (One one = new One()) {
+			throw new IOException ("Error in try block");
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+}
+
+class One implements AutoCloseable {
+	
+	public void close() throws IOException {
+		System.out.println("Closing - One...");
+		throw new IOException ("Error with closing");
+	}
+}
+
+```
+What happens with the exception thrown by the close method of the resource?!
+Java adds the exceptions thworn by the close methods of the resource(s) to a surpressed array in the
+main exception. </br>
+The main exception is the one thrown in the try block. If there's no exception thrown in the try block then the
+first exception thrown by the close method becomes the main exception.
+Remember that the resources are closed in reverse order,therefore the first exception corresponds to the last resources (if exception is thrown and so forth) </br>
+First exception thrown becomes main and the others are supressed in the main exceptions.</br>
+If catch or finally throws an exception, no supressing is happening.
+
+
+
 #### Autoclosable resource with try-with-resources
 ```
 try (Reader reader = new BufferedReader(new FileReader(file)) {
