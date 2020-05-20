@@ -34,8 +34,7 @@ try {
   throw e;
 }
 ```
-Multi-catc statement can be replaced with `catch (Exception e)`. It is not bad practice because we are not really catching all the exceptions
-It catches all Exception subclases that allows the code to compile + unchecked exceptions. Java infers the Exception subclasses.
+Multi-catch statement can be replaced with `catch (Exception e)`. It is not bad practice because we are not really catching all the *checked* exceptions. It catches all *checked* Exception subclasses that allows the code to compile. Implicitly it also catches all "unchecked" exceptions.
 
 Exception in thread "main" java.lang.RuntimeException
 
@@ -79,7 +78,7 @@ Returns CAUGHT because the runtime exception is caught
 	
 		try {
 			example();	
-		} catch (Exception e) {
+		} catch (Exception e) { // Catches the subclasses defined in throws + all the unchecked exception
 			System.out.println("CAUGHT");
 		}
 	}
@@ -95,5 +94,18 @@ Returns CAUGHT because the runtime exception is caught
 ```
 try (Reader reader = new BufferedReader(new FileReader(file)) {
 
+} catch (IOException) {
+
 }
 ```
+The resource used in try-with-resources mush implement Autoclosable.
+Autoclosable is a superinterface of closable.
+
+##### Differences between AutoClosable and Closable
+Closable close method throws only IOExceptions and RuntimeException.
+Autoclosable close method throws aby Exception.
+|    |      AuotClosable      |  Closable |
+|----------|-------------|------|
+|extends|none|AutoClosable|
+|throws|Exception|IOException|
+|idemponcy|No, but recommended|Yes|
