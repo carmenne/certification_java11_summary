@@ -24,6 +24,7 @@ DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "**/*.txt);
 **/*.txt - glob
 There's one limitation to DirectoryStream. It streams only one directory (like ls)
 
+#### glob
 - One astericks `*` means match any character except for a directory boundary. 
 - Two astericks `**` means match any character including directory boundarie(s).
 - `{A*, b}` - either a capital A followed by any character, or character b
