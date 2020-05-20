@@ -34,5 +34,66 @@ try {
   throw e;
 }
 ```
-Multi-catc statement can be replaced with `catch (Exception e)`. It is not bad practice because we are not really catching all the exceptions.
-It catches all Exception subclases that allows the code to compile. Java infers the Exception subclasses.
+Multi-catc statement can be replaced with `catch (Exception e)`. It is not bad practice because we are not really catching all the exceptions
+It catches all Exception subclases that allows the code to compile + unchecked exceptions. Java infers the Exception subclasses.
+
+Exception in thread "main" java.lang.RuntimeException
+
+```
+	public static void main(String[] args) {
+		
+		try {
+			exception();
+		} catch (SQLException | IOException e) {
+			System.out.println("END");
+		}
+			
+	}
+	
+	private static void exception() throws SQLException, IOException {
+	
+		try {
+			example();	
+		} catch (SQLException | IOException e) {
+		}
+	}
+	
+	private static void example() throws SQLException, IOException {
+		throw new RuntimeException();
+	}
+ ```
+ 
+Returns CAUGHT because the runtime exception is caught 
+```
+	public static void main(String[] args) {
+		
+		try {
+			exception();
+		} catch (SQLException | IOException e) {
+			System.out.println("END");
+		}
+			
+	}
+	
+	private static void exception() throws SQLException, IOException {
+	
+		try {
+			example();	
+		} catch (Exception e) {
+			System.out.println("CAUGHT");
+		}
+	}
+	
+	private static void example() throws SQLException, IOException {
+		throw new RuntimeException();
+	}
+```
+
+
+
+#### Autoclosable resource with try-with-resources
+```
+try (Reader reader = new BufferedReader(new FileReader(file)) {
+
+}
+```
