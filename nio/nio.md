@@ -14,3 +14,12 @@ Path dir = Paths.get("/home/java");
 Path file = Paths.get("/home/java/learn/java.md");
 Path result = dir.relativize(file); // learn/java.md
 ```
+
+#### StreamDirectory
+```
+Path dir = Paths.get("/home/java");
+DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "**/*.txt);
+
+```
+**/*.txt - glob
+There's one limitation to DirectoryStream. It streams only one directory (like ls)
