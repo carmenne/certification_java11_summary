@@ -21,8 +21,8 @@ try (var insideReader = reader) {
 }
 ```
 
-##### ORDER
-The final blockes close in reverse order (the resources are closed in the reverse order in which they were created) immediately after the try block finishes.
+##### Order
+The final blockes close in reverse order (the resources are closed in the reverse order in which they were created) immediately after the try block finishes. So the resources are closed before the catch statement. This is because the resources belong to the try block in try-with-resources. They are closed in reverse order because the resources can be dependent on each other.
 
 ##### Surpressed exceptions
 
