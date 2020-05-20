@@ -3,6 +3,8 @@
 ##### Statements in try
 In `try ()` you can only have statments that are variable declaration and initialization.
 The variable shuould be declared in the try statement. In cannot be declared outside the try statement and initialized inside the try statement.
+The variables inside try-with-resources must implement [AutoCloseable](https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html)
+
 ```
 NOK
 error: the try-with-resources resource must either be a variable declaration or 
@@ -25,6 +27,27 @@ try (var insideReader = reader) {
 The final blockes close in reverse order (the resources are closed in the reverse order in which they were created) immediately after the try block finishes. So the resources are closed before the catch statement. This is because the resources belong to the try block in try-with-resources. They are closed in reverse order because the resources can be dependent on each other.
 
 ##### Surpressed exceptions
+
+#### Autoclosable resource with try-with-resources
+```
+try (Reader reader = new BufferedReader(new FileReader(file)) {
+
+} catch (IOException) {
+
+}
+```
+The resource used in try-with-resources mush implement Autoclosable.
+Autoclosable is a superinterface of closable.
+
+##### Differences between AutoClosable and Closable
+Closable close method throws only IOExceptions and RuntimeException.
+Autoclosable close method throws aby Exception.
+|    |      AuotClosable      |  Closable |
+|----------|-------------|------|
+|extends|none|AutoClosable|
+|throws|Exception|IOException|
+|idemponcy|No, but recommended|Yes|
+
 
 #### Multi-catch
 
@@ -116,25 +139,3 @@ Returns CAUGHT because the runtime exception is caught
 		throw new RuntimeException();
 	}
 ```
-
-
-
-#### Autoclosable resource with try-with-resources
-```
-try (Reader reader = new BufferedReader(new FileReader(file)) {
-
-} catch (IOException) {
-
-}
-```
-The resource used in try-with-resources mush implement Autoclosable.
-Autoclosable is a superinterface of closable.
-
-##### Differences between AutoClosable and Closable
-Closable close method throws only IOExceptions and RuntimeException.
-Autoclosable close method throws aby Exception.
-|    |      AuotClosable      |  Closable |
-|----------|-------------|------|
-|extends|none|AutoClosable|
-|throws|Exception|IOException|
-|idemponcy|No, but recommended|Yes|
