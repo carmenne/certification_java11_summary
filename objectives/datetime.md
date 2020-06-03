@@ -23,6 +23,7 @@ LocalDateTime.parse(aDateTime, aFormatter);
 ZonedDateTime.now();
 ZonedDateTime.of(aDateTime, ZoneId.of(aZoneString));
 ZonedDateTime.parse("2020-06-03T16:22:03+02:00");
+aLocalDateTime.atZone(aZoneId);
 
 ```
 ##### format.DateTimeFormatter
